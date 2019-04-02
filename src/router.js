@@ -1,35 +1,44 @@
 import Vue from "vue";
 import Router from "vue-router";
-import store from './store.js';
+import store from "./store.js";
 import Home from "./views/Home.vue";
-import About from "./views/About.vue";
-import Login from './views/auth/Login.vue';
+import Product from "./views/Product.vue";
+import Category from "./views/Category.vue";
+import Login from "./views/auth/Login.vue";
 
 Vue.use(Router);
 
 let router = new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About,
+      path: "/login",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/product",
+      name: "product",
+      component: Product,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: "/category",
+      name: "category",
+      component: Category,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });
@@ -37,13 +46,13 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
-      next()
-      return
+      next();
+      return;
     }
-    next('/login')
+    next("/login");
   } else {
-    next()
+    next();
   }
-})
+});
 
 export default router;
