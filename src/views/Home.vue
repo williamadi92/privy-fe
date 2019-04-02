@@ -1,15 +1,23 @@
 <template>
-  
+  <div>
+    <Navbar></Navbar>
+    <h3>Welcome to Privy ID FE Test Dashboard</h3>
+  </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
+import Navbar from "@/components/nav/Navbar";
 
-// export default {
-//   name: "home",
-//   components: {
-//     HelloWorld
-//   }
-// };
+export default {
+  components: {
+    Navbar
+  }
+};
 </script>
+
+<style scoped>
+h3 {
+  padding: 30px;
+}
+</style>
+
